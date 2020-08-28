@@ -10,7 +10,7 @@ def main():
     api_token = os.getenv("HS_API_TOKEN")
     api = HS_API(api_token)
 
-    device_id = os.geten("DEVICE_ID")
+    device_id = os.getenv("DEVICE_ID")
 
     #devices = api.get_devices()
     api.lock_device(device_id)
