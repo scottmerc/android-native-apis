@@ -50,7 +50,9 @@ class HS_API():
 
     def get_bridge(self, device_id):
         request_url = self.url_root + 'adb/{}/bridge'.format(device_id)
-        response = requests.post(request_url, headers=self.headers)
+        with open('/Users/scottmercer/.android/adbkey.pub', 'rb') as f:
+            data = f.read()
+        response = requests.get(request_url, data=data, headers=self.headers)
         json_data = json.loads(response.text)
         if response.status_code == 200:
             return json_data["serial"]
