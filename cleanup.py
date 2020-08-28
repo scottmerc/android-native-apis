@@ -11,7 +11,7 @@ def main():
 
     #devices = api.get_devices()
     os.system("adb disconnect")
-    api.unlock_device("31543137414b3098")
+    api.unlock_device("cd3aed29")
 
 
 
