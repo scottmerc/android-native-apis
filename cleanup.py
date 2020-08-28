@@ -9,9 +9,11 @@ def main():
     api_token = os.getenv("HS_API_TOKEN")
     api = HS_API(api_token)
 
+    device_id = os.geten("DEVICE_ID")
+
     #devices = api.get_devices()
     os.system("adb disconnect")
-    api.unlock_device("00ac5958dd8d9aed")
+    api.unlock_device(device_id)
 
 
 
