@@ -11,8 +11,8 @@ def main():
     api = HS_API(api_token)
 
     #devices = api.get_devices()
-    api.lock_device("CQ3001SM53")
-    serial = api.get_bridge("CQ3001SM53")
+    api.lock_device("31543137414b3098")
+    serial = api.get_bridge("31543137414b3098")
     print(serial)
     command = "adb connect {}".format(serial)
     os.system(command)
