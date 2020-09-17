@@ -100,9 +100,26 @@ class HS_API():
             print("Error stopping capture....\n")
 
 
-    def install_apk(self, device_address, path_to_apk):
+    # def install_apk(self, device_address, path_to_apk):
+    #     request_url = self.url_root + "adb/{}/install".format(device_address)
+    #     with open(path_to_apk, 'rb') as f:
+    #         data = f.read()
+    #     response = requests.post(request_url, headers=self.headers, data=data)
+    #     print response.text
+    
+    def install_apk(self, device_address, apk_id):
         request_url = self.url_root + "adb/{}/install".format(device_address)
-        with open(path_to_apk, 'rb') as f:
-            data = f.read()
-        response = requests.post(request_url, headers=self.headers, data=data)
+        params = {'apk_id': apk_id}
+        response = requests.post(request_url, headers=self.headers, params=params)
         print response.text
+
+
+    def get_apk_info(self):
+        request_url = self.url_root + "apps/apk/latest"
+        response = requests.post(request_url, headers=self.headers)
+        json_data = json.loads(response.text)
+        if response.status_code == 200:
+            return json_data["apk_id"]
+            print(son_data["apk_id"])
+        else:
+            logging.error("Failed to upload apk")

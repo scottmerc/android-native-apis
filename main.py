@@ -15,6 +15,8 @@ def main():
 
     api.lock_device(device_id) #api to lock the device
     #api.install_apk(device_id, apk_path) #install app on spevific device
+    apk_id = api.get_apk_info()
+    api.install_apk(device_id, apk_id)
     session_id = api.start_session(device_id) #api to start performance session
     api.start_test(device_id, adb_command) #api to invoke test
     api.stop_session(session_id) #api to stop perfromnace session
