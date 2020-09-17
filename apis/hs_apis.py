@@ -116,10 +116,10 @@ class HS_API():
 
     def get_apk_info(self):
         request_url = self.url_root + "apps/apk/latest"
-        response = requests.post(request_url, headers=self.headers)
+        response = requests.get(request_url, headers=self.headers)
         json_data = json.loads(response.text)
         if response.status_code == 200:
             return json_data["apk_id"]
-            print(son_data["apk_id"])
         else:
-            logging.error("Failed to upload apk")
+            logging.error("Device {device_id} did not return adb bridge")
+            return 0
