@@ -5,22 +5,20 @@ import json
 from apis.hs_apis import HS_API
 
 
-
 def main():
     api_token = os.getenv("HS_API_TOKEN")
     api = HS_API(api_token)
-
     device_id = os.getenv("DEVICE_ID")
+    #apk_path = ''
+    adb_command = 'am instrument -w -r    -e package com.simplemobiletools.contacts.activities -e debug false com.simplemobiletools.contacts.debug.test/android.support.test.runner.AndroidJUnitRunner'
 
-    #devices = api.get_devices()
-    api.lock_device(device_id)
-    serial = api.get_bridge(device_id)
-    command = "adb connect {}".format(serial)
-    os.system(command)
-    time.sleep(3)
-    # os.system("adb disconnect")
-    # api.unlock_device("CQ3001SM53")
 
+    api.lock_device(device_id) #api to lock the device
+    #api.install_apk(device_id, apk_path) #install app on spevific device
+    session_id = api.start_session(device_id) #api to start performance session
+    api.start_test(device_id, adb_command) #api to invoke test
+    api.stop_session(session_id) #api to stop perfromnace session
+    api.unlock_device(device_id) #api to release the device
 
 
 if __name__ == '__main__':
